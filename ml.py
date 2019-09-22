@@ -1,3 +1,5 @@
+from pptx import Presentation
+
 from pptx.dml.color import RGBColor
 from pptx.util import Cm, Pt
 from pptx.enum.text import PP_PARAGRAPH_ALIGNMENT
@@ -23,6 +25,13 @@ STANZA = 'STANZA'
 TITLE = 'TITLE'
 
 
+def create_presentation_slide(title, stanzas, background_image, logo_image):
+    presentation = Presentation()
+    for stanza in stanzas:
+        add_slide_with_title_and_content(presentation, background_image, logo_image, title, stanza)
+    return presentation
+
+
 def add_background_image(slide, image_path):
     top = Cm(0)
     left = Cm(0)
@@ -42,7 +51,9 @@ def add_title(slide, text):
     paragraph.alignment = PP_PARAGRAPH_ALIGNMENT.CENTER
     paragraph.font.size = Pt(40)
     paragraph.font.bold = True
-    paragraph.font.color.rgb = RGBColor(255, 255, 255)
+    paragraph.font.italic = True
+    paragraph.font.name = 'Comic Sans MS'
+    paragraph.font.color.rgb = RGBColor(135, 209, 209)
     title.text_frame.auto_size = MSO_AUTO_SIZE.TEXT_TO_FIT_SHAPE
 
 
@@ -55,8 +66,9 @@ def add_stanza(slide, text):
     stanza.text = text.upper()
     for paragraph in stanza.text_frame.paragraphs:
         paragraph.alignment = PP_PARAGRAPH_ALIGNMENT.CENTER
-        paragraph.font.size = Pt(30)
-        paragraph.font.color.rgb = RGBColor(255, 255, 255)
+        paragraph.font.size = Pt(36)
+        paragraph.font.name = 'Comic Sans MS'
+        paragraph.font.color.rgb = RGBColor(135, 209, 209)
     stanza.text_frame.auto_size = MSO_AUTO_SIZE.TEXT_TO_FIT_SHAPE
 
 
