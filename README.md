@@ -2,6 +2,10 @@
 
 Mini-projeto para gerar automaticamente apresentações power-point a partir da letra de música, projeto para o ministério de louvor da IPND
 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/JonasFreireAlcantara/Power-Point-Presentation/master/screenshot_slide.png" width="550">
+</p>
+
 #### Configuração
 Este script requer ter o python3 e pip instalados no seu sistema
 será necessário executar o seguinte comando para instalar as dependências necessárias:
