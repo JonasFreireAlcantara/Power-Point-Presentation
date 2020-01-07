@@ -14,7 +14,6 @@ será necessário executar o seguinte comando para instalar as dependências nec
 ```
 
 #### Arquivos fonte:
-* ml.py
 * slides.py
 
 
@@ -43,7 +42,6 @@ it will be necessary to run this command for dependencies installation:
 ```
 
 #### Source files
-* ml.py
 * slides.py
 
 #### Usage
