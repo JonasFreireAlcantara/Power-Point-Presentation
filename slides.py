@@ -23,7 +23,7 @@ from pptx.enum.text import MSO_AUTO_SIZE
     Picture with Caption
 '''
 
-# Some util consants
+# Some util constants
 STANZA = 'stanza'
 TITLE = 'title'
 IMAGE = 'image',
@@ -31,10 +31,12 @@ LOGO = 'logo'
 FILENAME = 'filename'
 MUSIC = 'music_letter'
 PRESENTATION = 'presentation'
+PATH_BACKGROUND_IMAGE = 'recursos'+os.path.sep+'background.jpg'
+PATH_LOGO_IMAGE = 'recursos'+os.path.sep+'logo.png'
 
 
 def usage():
-    print(f'\nUtilização:\n  {sys.argv[0]} <<pasta_letras>> <<pasta_slides>> <<background_imagem>> <<logo_imagem>>\n')
+    print(f'\nUtilização:\n  {sys.argv[0]} <<pasta_letras>> <<pasta_destino>>\n')
 
 
 def save_presentations_to_files(list_of_presentations, directory):
@@ -99,6 +101,7 @@ def add_title(slide, text):
     height = Cm(3.20)
     title = slide.shapes.add_textbox(left, top, width, height)
     title.text = text.upper()
+    # title.text = text
     paragraph = title.text_frame.paragraphs[0]
     paragraph.alignment = PP_PARAGRAPH_ALIGNMENT.CENTER
     paragraph.font.size = Pt(40)
@@ -117,11 +120,12 @@ def add_stanza(slide, text):
     height = Cm(12.00)
     stanza = slide.shapes.add_textbox(left, top, width, height)
     stanza.text = text.upper()
+    # stanza.text = text
     stanza.text_frame.auto_size = MSO_AUTO_SIZE.TEXT_TO_FIT_SHAPE
     stanza.text_frame.word_wrap = True
     for paragraph in stanza.text_frame.paragraphs:
         paragraph.alignment = PP_PARAGRAPH_ALIGNMENT.CENTER
-        paragraph.font.size = Pt(36)
+        paragraph.font.size = Pt(30)
         paragraph.font.name = 'Comic Sans MS'
         paragraph.font.color.rgb = RGBColor(0, 176, 240)
 
@@ -175,14 +179,14 @@ def read_file(file_path):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 5:
+    if len(sys.argv) != 3:
         usage()
         exit(0)
 
     directory = sys.argv[1]
     target_directory = sys.argv[2]
-    background_image = sys.argv[3]
-    logo_image = sys.argv[4]
+    background_image = PATH_BACKGROUND_IMAGE
+    logo_image = PATH_LOGO_IMAGE
 
     directory_dictionaries = get_dictionaries_from_directory(directory)
     list_of_presentations = get_presentations_from_dictionary(directory_dictionaries, background_image, logo_image)
